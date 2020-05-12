@@ -48,13 +48,13 @@ class WeatherViewController: UIViewController{
     var icon_images = ["Rain":"cloud.rain","Drizzle":"cloud.drizle","Thunderstorm":"cloud.bolt","Snow":"snow","Clear":"sun.max.fill","Cloud":"cloud","Atmosphere":"cloud.fog"];
     var weatherManager = WeatherManager();
     var locationManager = CLLocationManager();
-    var attractionManager = Attractions();
+//    var attractionManager = Attractions();
     var cityManager = City();
     var lon:Double? = 0.0;
     var lat:Double? = 0.0;
     var destination:String? = "London";
     var cityData:CityModel?;
-    var attractionsList = Array<AttractionModel>();
+//    var attractionsList = Array<AttractionModel>();
     @IBOutlet weak var findHotel: UIButton!
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -68,8 +68,9 @@ class WeatherViewController: UIViewController{
     }
     @IBOutlet weak var mainBackground: UIImageView!;
     @IBAction func FindHotels(_ sender: UIButton) {
-        print("The self.lat \(self.lat) and self.lon \(self.lon) LINE 53");
-        self.attractionManager.findAttractions(self.lat ?? 0.0, self.lon ?? 0.0);
+//        print("The self.lat \(self.lat) and self.lon \(self.lon) LINE 53");
+//        self.attractionManager.findAttractions(self.lat ?? 0.0, self.lon ?? 0.0);
+        self.cityManager.getCityDetails(city: (self.cityLabel.text!));
     }
     
     
@@ -81,7 +82,7 @@ class WeatherViewController: UIViewController{
         locationManager.delegate = self;
         SearchField.delegate = self;
         weatherManager.delegate = self;
-        attractionManager.delegate = self;
+//        attractionManager.delegate = self;
         cityManager.delegate = self;
         locationManager.requestWhenInUseAuthorization();
         locationManager.requestLocation();
@@ -168,7 +169,6 @@ extension WeatherViewController : Update {
                self.lon = Double(data.lon);
                self.lat =  Double(data.lat);
                print("lon:\(self.lon) and lat:\(self.lat)");
-               self.cityManager.getCityDetails(city: data.city);
                self.updateCity(name: data.city);
                self.updateTemp(temp: data.temperature);
                self.updateCondition(condition: data.weatherCondition);
@@ -207,30 +207,30 @@ extension WeatherViewController : CLLocationManagerDelegate {
 }
 
 //MARK: - Attractions
-
-extension WeatherViewController: UpdateAttractions{
-    
-    func performAttractionUpdate(_ data: Any) {
-        DispatchQueue.main.async {
-             if let safeData = data as? Array<AttractionModel>{
-                    self.attractionsList = safeData;
-                }
-            self.performSegue(withIdentifier: "goToAttraction", sender: self)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToAttraction"{
-            if let destination = segue.destination as? AttractionViewController{
-                destination.updateCity(cityData!);
-                
-                destination.updateNavBarValue("Attractions", "MainDashboard")
-                destination.setAttraction(self.attractionsList);
-            }
-        }
-    }
-}
-
+//
+//extension WeatherViewController: UpdateAttractions{
+//
+//    func performAttractionUpdate(_ data: Any) {
+//        DispatchQueue.main.async {
+//             if let safeData = data as? Array<AttractionModel>{
+//                    self.attractionsList = safeData;
+//                }
+//            self.performSegue(withIdentifier: "goToAttraction", sender: self)
+//        }
+//    }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "goToAttraction"{
+//            if let destination = segue.destination as? AttractionViewController{
+//                destination.updateCity(cityData!);
+//
+//                destination.updateNavBarValue("Attractions", "MainDashboard")
+//                destination.setAttraction(self.attractionsList);
+//            }
+//        }
+//    }
+//}
+//
 // MARK: - Update City
 extension WeatherViewController:UpdateCity{
     func performCityUpdate(_ data: Any) {
@@ -238,9 +238,21 @@ extension WeatherViewController:UpdateCity{
             if let safeCity = data as? CityModel{
                       self.cityData = safeCity;
                       print("Recieved data \(self.cityData)");
+                    self.performSegue(withIdentifier: "goToCity", sender: self);
                   }
-                  
+
         }
-      
+
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToCity"{
+            var destination = segue.destination as! CityViewController;
+            if let safeCity = self.cityData {
+                destination.updateData(safeCity);
+            }
+            
+            
+        }
     }
 }

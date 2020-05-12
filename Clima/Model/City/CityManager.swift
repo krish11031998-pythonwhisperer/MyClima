@@ -52,11 +52,13 @@ class City{
                 print(result);
                 if let safeResult = result as? [String:Any]{
                     newCityModel.name = safeResult["name"] as? String;
+                    newCityModel.latitude = Double((safeResult["latitude"] as? String)!);
+                    newCityModel.longitude = Double((safeResult["longitude"] as? String)!);
                     newCityModel.location_id = safeResult["location_id"] as? String;
                     newCityModel.geo_description = safeResult["geo_description"] as? String;
                     if let safePhotos = safeResult["photo"] as? [String:Any]{
                         if let safeImages = safePhotos["images"] as? [String:Any]{
-                            if let safeSmallImage = safeImages["small"] as? [String:Any]{
+                            if let safeSmallImage = safeImages["large"] as? [String:Any]{
                                 newCityModel.photo = safeSmallImage["url"] as? String;
                             }
                         }

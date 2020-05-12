@@ -11,6 +11,8 @@ import Foundation
 struct CityModel{
     
     var name:String?;
+    var latitude:Double?;
+    var longitude:Double?;
     var location_id:String?;
     var photo:String?;
     var geo_description:String?;
