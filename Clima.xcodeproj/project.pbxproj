@@ -14,6 +14,8 @@
 		ADAA27BA231BBFB300365194 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADAA27B9231BBFB300365194 /* Assets.xcassets */; };
 		ADAA27BD231BBFB300365194 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAA27BB231BBFB300365194 /* LaunchScreen.storyboard */; };
 		ADAA27CE231BC87F00365194 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ADAA27CD231BC87F00365194 /* README.md */; };
+		BC318CA4246C6AB700284436 /* AttractionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC318CA3246C6AB700284436 /* AttractionsCollectionViewCell.swift */; };
+		BC318CAC246C772300284436 /* AttractionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC318CAB246C772300284436 /* AttractionsViewController.swift */; };
 		BC403A282469F4F60071DDE0 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC403A272469F4F60071DDE0 /* DetailsViewController.swift */; };
 		BC403A2B246A045A0071DDE0 /* CityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC403A2A246A045A0071DDE0 /* CityManager.swift */; };
 		BC403A2D246A070D0071DDE0 /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC403A2C246A070D0071DDE0 /* CityModel.swift */; };
@@ -21,9 +23,11 @@
 		BC97E5072465832900748C52 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC97E5062465832900748C52 /* WeatherManager.swift */; };
 		BC97E50924659FEE00748C52 /* WeatherDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC97E50824659FEE00748C52 /* WeatherDict.swift */; };
 		BCB30E1E2467159E00436BF2 /* AttractionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB30E1D2467159E00436BF2 /* AttractionsModel.swift */; };
-		BCD343742469A6B900906794 /* AttractionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD343732469A6B900906794 /* AttractionViewController.swift */; };
-		BCD343762469A74900906794 /* AttractionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD343752469A74900906794 /* AttractionTableViewCell.swift */; };
-		BCD343782469AD2700906794 /* Attraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD343772469AD2700906794 /* Attraction.swift */; };
+		BCB538BE246DDDF2007D5A52 /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB538BD246DDDF2007D5A52 /* APICalls.swift */; };
+		BCB538C1246DE45E007D5A52 /* HotelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB538C0246DE45E007D5A52 /* HotelManager.swift */; };
+		BCB538C3246DE53D007D5A52 /* HotelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB538C2246DE53D007D5A52 /* HotelModel.swift */; };
+		BCB538C9246DF89F007D5A52 /* HotelsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB538C8246DF89F007D5A52 /* HotelsCollectionViewCell.swift */; };
+		BCB538CB246DFC71007D5A52 /* HotelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB538CA246DFC71007D5A52 /* HotelsViewController.swift */; };
 		BCFB09022465CDBA00ACC35E /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB09012465CDBA00ACC35E /* WeatherModel.swift */; };
 		BCFB09062466AD8C00ACC35E /* AttractionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB09052466AD8C00ACC35E /* AttractionManager.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +42,8 @@
 		ADAA27BC231BBFB300365194 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADAA27BE231BBFB300365194 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADAA27CD231BC87F00365194 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BC318CA3246C6AB700284436 /* AttractionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionsCollectionViewCell.swift; sourceTree = "<group>"; };
+		BC318CAB246C772300284436 /* AttractionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionsViewController.swift; sourceTree = "<group>"; };
 		BC403A272469F4F60071DDE0 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		BC403A2A246A045A0071DDE0 /* CityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityManager.swift; sourceTree = "<group>"; };
 		BC403A2C246A070D0071DDE0 /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
@@ -45,9 +51,11 @@
 		BC97E5062465832900748C52 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		BC97E50824659FEE00748C52 /* WeatherDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDict.swift; sourceTree = "<group>"; };
 		BCB30E1D2467159E00436BF2 /* AttractionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionsModel.swift; sourceTree = "<group>"; };
-		BCD343732469A6B900906794 /* AttractionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionViewController.swift; sourceTree = "<group>"; };
-		BCD343752469A74900906794 /* AttractionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionTableViewCell.swift; sourceTree = "<group>"; };
-		BCD343772469AD2700906794 /* Attraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attraction.swift; sourceTree = "<group>"; };
+		BCB538BD246DDDF2007D5A52 /* APICalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
+		BCB538C0246DE45E007D5A52 /* HotelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelManager.swift; sourceTree = "<group>"; };
+		BCB538C2246DE53D007D5A52 /* HotelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelModel.swift; sourceTree = "<group>"; };
+		BCB538C8246DF89F007D5A52 /* HotelsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsCollectionViewCell.swift; sourceTree = "<group>"; };
+		BCB538CA246DFC71007D5A52 /* HotelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsViewController.swift; sourceTree = "<group>"; };
 		BCFB09012465CDBA00ACC35E /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		BCFB09052466AD8C00ACC35E /* AttractionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,10 +106,9 @@
 		ADAA27C8231BC3E500365194 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BCB538C5246DF5B6007D5A52 /* HotelsView */,
+				BCB538C4246DF557007D5A52 /* AttractionVIew */,
 				ADAA27B4231BBFAF00365194 /* WeatherViewController.swift */,
-				BCD343732469A6B900906794 /* AttractionViewController.swift */,
-				BCD343752469A74900906794 /* AttractionTableViewCell.swift */,
-				BCD343772469AD2700906794 /* Attraction.swift */,
 				BC403A272469F4F60071DDE0 /* DetailsViewController.swift */,
 				BC7FD24E246B234800B5BAC9 /* CityViewController.swift */,
 			);
@@ -128,11 +135,48 @@
 		BC97E5052465831200748C52 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BCB538BF246DE438007D5A52 /* Hotels */,
+				BCB538BC246DDDDE007D5A52 /* TripAdvisorAPI */,
 				BC403A29246A04460071DDE0 /* City */,
 				BCFB09042466AD6B00ACC35E /* Weather */,
 				BCFB09032466AD6400ACC35E /* Attractions */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BCB538BC246DDDDE007D5A52 /* TripAdvisorAPI */ = {
+			isa = PBXGroup;
+			children = (
+				BCB538BD246DDDF2007D5A52 /* APICalls.swift */,
+			);
+			path = TripAdvisorAPI;
+			sourceTree = "<group>";
+		};
+		BCB538BF246DE438007D5A52 /* Hotels */ = {
+			isa = PBXGroup;
+			children = (
+				BCB538C0246DE45E007D5A52 /* HotelManager.swift */,
+				BCB538C2246DE53D007D5A52 /* HotelModel.swift */,
+			);
+			path = Hotels;
+			sourceTree = "<group>";
+		};
+		BCB538C4246DF557007D5A52 /* AttractionVIew */ = {
+			isa = PBXGroup;
+			children = (
+				BC318CA3246C6AB700284436 /* AttractionsCollectionViewCell.swift */,
+				BC318CAB246C772300284436 /* AttractionsViewController.swift */,
+			);
+			path = AttractionVIew;
+			sourceTree = "<group>";
+		};
+		BCB538C5246DF5B6007D5A52 /* HotelsView */ = {
+			isa = PBXGroup;
+			children = (
+				BCB538C8246DF89F007D5A52 /* HotelsCollectionViewCell.swift */,
+				BCB538CA246DFC71007D5A52 /* HotelsViewController.swift */,
+			);
+			path = HotelsView;
 			sourceTree = "<group>";
 		};
 		BCFB09032466AD6400ACC35E /* Attractions */ = {
@@ -226,15 +270,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCD343762469A74900906794 /* AttractionTableViewCell.swift in Sources */,
+				BCB538C1246DE45E007D5A52 /* HotelManager.swift in Sources */,
+				BCB538C9246DF89F007D5A52 /* HotelsCollectionViewCell.swift in Sources */,
 				BC403A2B246A045A0071DDE0 /* CityManager.swift in Sources */,
+				BC318CAC246C772300284436 /* AttractionsViewController.swift in Sources */,
+				BCB538BE246DDDF2007D5A52 /* APICalls.swift in Sources */,
 				ADAA27B5231BBFAF00365194 /* WeatherViewController.swift in Sources */,
+				BCB538CB246DFC71007D5A52 /* HotelsViewController.swift in Sources */,
 				ADAA27B1231BBFAF00365194 /* AppDelegate.swift in Sources */,
-				BCD343742469A6B900906794 /* AttractionViewController.swift in Sources */,
 				BC97E5072465832900748C52 /* WeatherManager.swift in Sources */,
 				BC403A2D246A070D0071DDE0 /* CityModel.swift in Sources */,
 				ADAA27B3231BBFAF00365194 /* SceneDelegate.swift in Sources */,
-				BCD343782469AD2700906794 /* Attraction.swift in Sources */,
+				BCB538C3246DE53D007D5A52 /* HotelModel.swift in Sources */,
+				BC318CA4246C6AB700284436 /* AttractionsCollectionViewCell.swift in Sources */,
 				BCFB09062466AD8C00ACC35E /* AttractionManager.swift in Sources */,
 				BCFB09022465CDBA00ACC35E /* WeatherModel.swift in Sources */,
 				BC7FD24F246B234800B5BAC9 /* CityViewController.swift in Sources */,

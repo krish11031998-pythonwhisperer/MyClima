@@ -23,6 +23,10 @@ protocol UpdateCity {
     func performCityUpdate(_ data:Any);
 }
 
+protocol UpdateHotel {
+    func performHotelUpdate(_ data:Any);
+}
+
 extension UIButton{
     func roundedCorner(pixels: Double){
         var button = self;
@@ -43,7 +47,33 @@ extension UIButton{
     }
 }
 
-class WeatherViewController: UIViewController{
+extension UIImageView {
+    func downloaded(_ urlString:String) {
+        if let url = URL(string: urlString){
+            URLSession.shared.dataTask(with: url, completionHandler: {(data,response,error) in
+                if error == nil{
+                    if let safeData = data{
+                        DispatchQueue.main.async {
+                            self.image = UIImage(data: safeData);
+                            self.contentMode = .scaleAspectFill;
+                        }
+                        
+                    }
+                } else if error != nil{
+                    print("There is an error :  \(error!)");
+                    DispatchQueue.main.async {
+                        self.image = #imageLiteral(resourceName: "light_background");
+                        self.contentMode = .scaleAspectFill;
+                    }
+                    
+                    
+                }
+                }).resume()
+        }
+    }
+}
+
+class WeatherViewController: UIViewController , UINavigationControllerDelegate{
 
     var icon_images = ["Rain":"cloud.rain","Drizzle":"cloud.drizle","Thunderstorm":"cloud.bolt","Snow":"snow","Clear":"sun.max.fill","Cloud":"cloud","Atmosphere":"cloud.fog"];
     var weatherManager = WeatherManager();
@@ -73,6 +103,15 @@ class WeatherViewController: UIViewController{
         self.cityManager.getCityDetails(city: (self.cityLabel.text!));
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated);
+//        navigationController?.setToolbarHidden(true, animated: false);
+//    }
+//    
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated);
+//        navigationController?.setToolbarHidden(false, animated: true)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

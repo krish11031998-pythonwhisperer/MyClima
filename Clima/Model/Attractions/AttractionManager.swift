@@ -65,35 +65,21 @@ class Attractions{
     
     
     func findAttractions(_ lat:Double, _ lon:Double){
-        let headers = [
-            "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-            "x-rapidapi-key": "7746cb9f54msh2d203691cf02f42p161bc2jsn4079f978fca9",
-            "content-type" : "application/json"
-        ]
-        if let url = URL(string:"https://tripadvisor1.p.rapidapi.com/attractions/list-by-latlng?lunit=km&currency=USD&limit=30&distance=5&lang=en_US&longitude=\(lon)&latitude=\(lat)"){
-            
-                var request = URLRequest(url:url);
-                request.httpMethod = "GET";
-                request.allHTTPHeaderFields = headers;
-                let session = URLSession(configuration: .default);
-                let task = session.dataTask(with: request, completionHandler: {(data,response,error) in
-                    
-                   if (error != nil) {
-                        print(error)
-                    }
-                    
-                    if let safeData = data{
-                        do{
-                            let dict = try JSONSerialization.jsonObject(with: safeData, options: .mutableContainers) as? [String:Any];
-                            let finalData = Attractions.parseData(dict?["data"]);
-                            self.delegate?.performAttractionUpdate(finalData)
-                        }catch{
-                            print("Error")
-                        }
-                        
-                    }
-                })
-             task.resume();
+        let APICall = TripAdvisorAPI( [
+                   "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
+                   "x-rapidapi-key": "7746cb9f54msh2d203691cf02f42p161bc2jsn4079f978fca9",
+                   "content-type" : "application/json"
+        ], "https://tripadvisor1.p.rapidapi.com/attractions/list-by-latlng?lunit=km&currency=USD&limit=30&distance=5&lang=en_US&longitude=\(lon)&latitude=\(lat)");
+        
+        APICall.getData(){(data,response,error) in
+            guard let safeData = data else { return }
+            do{
+                let dict = try JSONSerialization.jsonObject(with: safeData, options: .mutableContainers) as? [String:Any];
+                let finalData = Attractions.parseData(dict?["data"]);
+                self.delegate?.performAttractionUpdate(finalData)
+            }catch{
+                print("Error")
+            }
         }
     }
     
