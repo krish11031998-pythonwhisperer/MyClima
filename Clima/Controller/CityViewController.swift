@@ -15,6 +15,7 @@ class CityViewController: UIViewController {
     @IBOutlet weak var CityDesc: UILabel!
     @IBOutlet weak var AttractionsButton: UIButton!
     @IBOutlet weak var HotelsButton: UIButton!
+    @IBOutlet weak var backGroundView: UIView!
     var attractionsList = Array<AttractionModel>();
     var hotelsList = Array<HotelModel>();
     var attractionManager = Attractions();
@@ -26,6 +27,7 @@ class CityViewController: UIViewController {
         attractionManager.delegate = self;
         // Do any additional setup after loading the view.
         hotelManager.delegate = self;
+        self.backGroundView.roundedcorner();
     }
     
     @IBAction func GetHotels(_ sender: UIButton) {
@@ -63,7 +65,7 @@ class CityViewController: UIViewController {
         }
         else if segue.identifier == "goToHotels"{
             if let destination = segue.destination as? HotelsViewController{
-                destination.updateData(self.hotelsList);
+                destination.updateData(self.hotelsList,self.city!);
             }
         }
         

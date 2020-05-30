@@ -13,16 +13,24 @@ extension UIView {
     }
 }
 
+protocol AttractionSegue{
+    
+    func performSegueToAttraction( _ data:AttractionModel)
+}
 
 import UIKit
 
 class AttractionsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var mainHeader: UILabel!
-    @IBOutlet weak var AddressLabel: UILabel!
-    @IBOutlet weak var CostLabel: UILabel!
     @IBOutlet weak var ExploreButton: UIButton!
+    var delegate:AttractionSegue?;
     @IBAction func Explore(_ sender: UIButton) {
+        guard let safeAttraction = attractionData else {
+            print("No data available!");
+            return
+        }
+        self.delegate?.performSegueToAttraction(safeAttraction);
     }
     @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var attractionView: UIView!
@@ -36,15 +44,13 @@ class AttractionsCollectionViewCell: UICollectionViewCell {
     func updateUI(){
         if let safeAttraction = self.attractionData{
             DispatchQueue.main.async{
-                if let url = safeAttraction.offers?.offer_list?[0].image_url as String?{
+                if let url = safeAttraction.photo as String?{
                     self.backGround.downloaded(url)
                 }
                 self.mainHeader.text = safeAttraction.name ?? "Attraction";
-                self.AddressLabel.text = safeAttraction.address ?? "Address";
-                self.CostLabel.text = safeAttraction.offers?.lowest_price ?? "0.0";
                 self.ExploreButton.fancyButton(.black, .black);
                 self.backGround.roundedcorner();
-                self.attractionView.roundedcorner();
+//                self.attractionView.roundedcorner();
             }
             
             

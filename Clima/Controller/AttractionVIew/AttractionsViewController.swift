@@ -14,18 +14,19 @@ class AttractionsViewController: UIViewController {
     
     @IBOutlet weak var AttractionCollection: UICollectionView!
     var allAttractions:Array<AttractionModel>?;
-    
+    var finalAttractions:AttractionModel?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.AttractionCollection.dataSource = self;
         self.navBar.title = "Attractions";
         self.navBar.backBarButtonItem?.title = "City"
-
+        self.AttractionCollection.delegate = self;
+        self.updateCollectionView();
     }
     
     func updateCollectionView(){
-        let scale:CGFloat = 0.6
+        let scale:CGFloat = 0.8
         let maxSize = UIScreen.main.bounds.size;
         let cellWidth = floor(maxSize.width * scale);
         let cellHeight = floor(maxSize.height * scale);
@@ -59,9 +60,27 @@ extension AttractionsViewController : UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AttractionCell", for: indexPath) as! AttractionsCollectionViewCell;
         let attraction = self.allAttractions![indexPath.item];
         
+        cell.delegate = self;
         cell.updateData(attraction);
         
         return cell;
+    }
+}
+
+//MARK: - AttractionSegue
+
+extension AttractionsViewController : AttractionSegue {
+    func performSegueToAttraction(_ data: AttractionModel) {
+        self.finalAttractions = data;
+        self.performSegue(withIdentifier: "goToADestination", sender: self);
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToADestination"{
+            var destination = segue.destination as! AttractionDetailViewController;
+            guard let safeFinalAttractions = self.finalAttractions else { return }
+            destination.updateElement(safeFinalAttractions);
+        }
     }
 }
 
@@ -69,13 +88,11 @@ extension AttractionsViewController : UIScrollViewDelegate, UICollectionViewDele
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let layout = self.AttractionCollection!.collectionViewLayout as! UICollectionViewFlowLayout
-        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing;
+        let cellWidthIncludingSpacing = layout.itemSize.width ;
         var offset = targetContentOffset.pointee;
-        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing;
-        let roundedIndex = round(index);
-        
-        
-        offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: scrollView.contentInset.top);
+        let index = round((offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing);
+        print(index);
+        offset = CGPoint(x: index * (cellWidthIncludingSpacing - scrollView.contentInset.left - layout.minimumLineSpacing) , y: scrollView.contentInset.top);
         
         targetContentOffset.pointee = offset;
         

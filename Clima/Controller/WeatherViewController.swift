@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 
+
+
 protocol Update{
     func performUIUpdate(_ data:WeatherModel);
     func didFailDuringRequest(_ error : Any);
@@ -47,25 +49,28 @@ extension UIButton{
     }
 }
 
+var imageCache = NSCache<NSString,UIImage>();
 extension UIImageView {
     func downloaded(_ urlString:String) {
         if let url = URL(string: urlString){
+            if let image = imageCache.object(forKey: url.absoluteString as NSString) as? UIImage{
+                self.image = image;
+                return;
+            }
             URLSession.shared.dataTask(with: url, completionHandler: {(data,response,error) in
-                if error == nil{
-                    if let safeData = data{
-                        DispatchQueue.main.async {
-                            self.image = UIImage(data: safeData);
-                            self.contentMode = .scaleAspectFill;
-                        }
-                        
-                    }
+                var finalImage:UIImage?;
+                if error == nil , let safeData = data{
+                        finalImage = UIImage(data: safeData)!;
                 } else if error != nil{
                     print("There is an error :  \(error!)");
-                    DispatchQueue.main.async {
-                        self.image = #imageLiteral(resourceName: "light_background");
-                        self.contentMode = .scaleAspectFill;
+                    finalImage = nil;
+                }
+                DispatchQueue.main.async () { [weak self] in
+                    self?.image = finalImage ?? UIImage(named: "light_background");
+                    self?.contentMode = .scaleAspectFill;
+                    if let safeImage = finalImage{
+                        imageCache.setObject(safeImage, forKey: url.absoluteString as NSString);
                     }
-                    
                     
                 }
                 }).resume()
@@ -245,31 +250,6 @@ extension WeatherViewController : CLLocationManagerDelegate {
     }
 }
 
-//MARK: - Attractions
-//
-//extension WeatherViewController: UpdateAttractions{
-//
-//    func performAttractionUpdate(_ data: Any) {
-//        DispatchQueue.main.async {
-//             if let safeData = data as? Array<AttractionModel>{
-//                    self.attractionsList = safeData;
-//                }
-//            self.performSegue(withIdentifier: "goToAttraction", sender: self)
-//        }
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "goToAttraction"{
-//            if let destination = segue.destination as? AttractionViewController{
-//                destination.updateCity(cityData!);
-//
-//                destination.updateNavBarValue("Attractions", "MainDashboard")
-//                destination.setAttraction(self.attractionsList);
-//            }
-//        }
-//    }
-//}
-//
 // MARK: - Update City
 extension WeatherViewController:UpdateCity{
     func performCityUpdate(_ data: Any) {

@@ -14,6 +14,8 @@
 		ADAA27BA231BBFB300365194 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADAA27B9231BBFB300365194 /* Assets.xcassets */; };
 		ADAA27BD231BBFB300365194 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAA27BB231BBFB300365194 /* LaunchScreen.storyboard */; };
 		ADAA27CE231BC87F00365194 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ADAA27CD231BC87F00365194 /* README.md */; };
+		BC227861246FE1A300B027A4 /* AttractionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC227860246FE1A300B027A4 /* AttractionDetailViewController.swift */; };
+		BC227863246FE1B400B027A4 /* AttractionDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC227862246FE1B400B027A4 /* AttractionDetailCollectionViewCell.swift */; };
 		BC318CA4246C6AB700284436 /* AttractionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC318CA3246C6AB700284436 /* AttractionsCollectionViewCell.swift */; };
 		BC318CAC246C772300284436 /* AttractionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC318CAB246C772300284436 /* AttractionsViewController.swift */; };
 		BC403A282469F4F60071DDE0 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC403A272469F4F60071DDE0 /* DetailsViewController.swift */; };
@@ -42,6 +44,8 @@
 		ADAA27BC231BBFB300365194 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADAA27BE231BBFB300365194 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADAA27CD231BC87F00365194 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BC227860246FE1A300B027A4 /* AttractionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionDetailViewController.swift; sourceTree = "<group>"; };
+		BC227862246FE1B400B027A4 /* AttractionDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		BC318CA3246C6AB700284436 /* AttractionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		BC318CAB246C772300284436 /* AttractionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionsViewController.swift; sourceTree = "<group>"; };
 		BC403A272469F4F60071DDE0 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +127,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BC22785F246FE17500B027A4 /* AttractionDetails */ = {
+			isa = PBXGroup;
+			children = (
+				BC227860246FE1A300B027A4 /* AttractionDetailViewController.swift */,
+				BC227862246FE1B400B027A4 /* AttractionDetailCollectionViewCell.swift */,
+			);
+			path = AttractionDetails;
+			sourceTree = "<group>";
+		};
 		BC403A29246A04460071DDE0 /* City */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +177,7 @@
 		BCB538C4246DF557007D5A52 /* AttractionVIew */ = {
 			isa = PBXGroup;
 			children = (
+				BC22785F246FE17500B027A4 /* AttractionDetails */,
 				BC318CA3246C6AB700284436 /* AttractionsCollectionViewCell.swift */,
 				BC318CAB246C772300284436 /* AttractionsViewController.swift */,
 			);
@@ -272,12 +286,14 @@
 			files = (
 				BCB538C1246DE45E007D5A52 /* HotelManager.swift in Sources */,
 				BCB538C9246DF89F007D5A52 /* HotelsCollectionViewCell.swift in Sources */,
+				BC227861246FE1A300B027A4 /* AttractionDetailViewController.swift in Sources */,
 				BC403A2B246A045A0071DDE0 /* CityManager.swift in Sources */,
 				BC318CAC246C772300284436 /* AttractionsViewController.swift in Sources */,
 				BCB538BE246DDDF2007D5A52 /* APICalls.swift in Sources */,
 				ADAA27B5231BBFAF00365194 /* WeatherViewController.swift in Sources */,
 				BCB538CB246DFC71007D5A52 /* HotelsViewController.swift in Sources */,
 				ADAA27B1231BBFAF00365194 /* AppDelegate.swift in Sources */,
+				BC227863246FE1B400B027A4 /* AttractionDetailCollectionViewCell.swift in Sources */,
 				BC97E5072465832900748C52 /* WeatherManager.swift in Sources */,
 				BC403A2D246A070D0071DDE0 /* CityModel.swift in Sources */,
 				ADAA27B3231BBFAF00365194 /* SceneDelegate.swift in Sources */,

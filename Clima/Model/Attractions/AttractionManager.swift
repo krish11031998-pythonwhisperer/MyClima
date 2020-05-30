@@ -53,6 +53,20 @@ class Attractions{
                     newAttraction.distance = Dict["distance"] as? String;
                     newAttraction.rating = Dict["rating"] as? String;
                     newAttraction.phone = Dict["phone"] as? String;
+                    if let lat = Dict["latitude"] as? String{
+                        newAttraction.lat = Double(lat);
+                    }
+                    if let lon = Dict["longitude"] as? String{
+                        newAttraction.lon = Double(lon);
+                    }
+                    
+                    if let safePhoto = Dict["photo"] as? [String:Any]{
+                        if let images = safePhoto["images"] as? [String:Any]{
+                            if let original = images["original"] as? [String:Any]{
+                                newAttraction.photo = original["url"] as? String;
+                            }
+                        }
+                    }
                     newAttraction.parseOffer((Dict["offer_group"] as? NSDictionary) ?? nil);
                     newAttraction.parseBooking((Dict["booking"] as? NSDictionary) ?? nil);
                     finalData.append(newAttraction);
