@@ -15,8 +15,6 @@ class AttractionViewController: UIViewController {
 
     @IBOutlet weak var AttractionTable: UITableView!
     @IBOutlet weak var NavBar: UINavigationItem!
-    @IBOutlet weak var CityImage: UIImageView!
-    @IBOutlet weak var CityLabel: UILabel!
     var navBarTitle:String?;
     var cityImage:String?;
     var cityName:String?;
@@ -26,8 +24,6 @@ class AttractionViewController: UIViewController {
         super.viewDidLoad()
         AttractionTable.delegate = self;
         AttractionTable.dataSource = self;
-        self.CityImage.downloaded(urlString: self.cityImage!);
-        self.CityLabel.text = self.cityName ?? "Label";
         self.updateNavBar();
         // Do any additional setup after loading the view.
     }
@@ -42,19 +38,6 @@ class AttractionViewController: UIViewController {
         self.backTitle = back;
     }
 
-    func updateCity(_ data:CityModel){
-        print(data);
-        if let safePhoto = data.photo{
-            print("safePhoto: \(safePhoto)");
-            self.cityImage = safePhoto;
-        }
-        if let safeName = data.name{
-            self.cityName = safeName;
-        }
-//        self.CityImage.downloaded(urlString: data.photo ?? "");
-        
-    }
-    
     func setAttraction(_ attractions: Array<AttractionModel>){
         print("Recieved Attractions list \(attractions.count)");
         self.attractionCells = attractions.map({ (attraction) -> Attraction in

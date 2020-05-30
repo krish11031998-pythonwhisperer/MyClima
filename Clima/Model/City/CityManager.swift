@@ -15,31 +15,23 @@ class City{
     var delegate: UpdateCity?;
     
     func getCityDetails(city:String="Athens"){
-        if let url = URL(string:"\(self.mainURL)&query=\(city)"){
-            let headers = [
-                "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-                "x-rapidapi-key": "7746cb9f54msh2d203691cf02f42p161bc2jsn4079f978fca9",
-                "content-type" : "application/json"
-            ]
-
-            var request = URLRequest(url:url);
-            request.allHTTPHeaderFields = headers;
-            request.httpMethod = "GET"
-            
-            URLSession.shared.dataTask(with: request, completionHandler: {(data,response,error) in
-                    
-                if let safeData = data{
-                    do{
-                        let json = try JSONSerialization.jsonObject(with: safeData, options: .mutableContainers) as? [String:Any];
-                        let parsingData = json?["data"]
-                        let finalData = self.parseData(parsingData);
-                        self.delegate?.performCityUpdate(finalData);
-                    }catch{
-                        print("There was an error");
-                    }
-                }
-                    
-                }).resume()
+        
+        let APICall = TripAdvisorAPI([
+            "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
+            "x-rapidapi-key": "7746cb9f54msh2d203691cf02f42p161bc2jsn4079f978fca9",
+            "content-type" : "application/json"
+        ], "\(self.mainURL)&query=\(city)");
+        
+        APICall.getData(){(data,response,error) in
+            guard let safeData = data else { return }
+            do{
+                let json = try JSONSerialization.jsonObject(with: safeData, options: .mutableContainers) as? [String:Any];
+                let parsingData = json?["data"]
+                let finalData = self.parseData(parsingData);
+                self.delegate?.performCityUpdate(finalData);
+            }catch{
+                print("There was an error");
+            }
         }
     }
     
@@ -49,14 +41,15 @@ class City{
         if let safeData = data as? Array<Any>{
             if let firstData = safeData[0] as? [String:Any]{
                 let result =  firstData["result_object"]
-                print(result);
                 if let safeResult = result as? [String:Any]{
                     newCityModel.name = safeResult["name"] as? String;
+                    newCityModel.latitude = Double((safeResult["latitude"] as? String)!);
+                    newCityModel.longitude = Double((safeResult["longitude"] as? String)!);
                     newCityModel.location_id = safeResult["location_id"] as? String;
                     newCityModel.geo_description = safeResult["geo_description"] as? String;
                     if let safePhotos = safeResult["photo"] as? [String:Any]{
                         if let safeImages = safePhotos["images"] as? [String:Any]{
-                            if let safeSmallImage = safeImages["small"] as? [String:Any]{
+                            if let safeSmallImage = safeImages["original"] as? [String:Any]{
                                 newCityModel.photo = safeSmallImage["url"] as? String;
                             }
                         }

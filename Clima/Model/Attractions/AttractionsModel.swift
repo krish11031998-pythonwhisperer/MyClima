@@ -14,6 +14,7 @@ struct AttractionModel : Codable{
     var name:String?;
     var num_reviews:String?;
     var location_string:String?;
+    var photo:String?;
     var ranking:String?;
     var distance:String?;
     var rating:String?;
@@ -21,7 +22,8 @@ struct AttractionModel : Codable{
     var address:String?;
     var booking:String?;
     var offers: offer_group?;
-    
+    var lat:Double?;
+    var lon:Double?;
     mutating func parseBooking(_ obj:Any){
         if let safeDict = obj as? [String:Any]{
             self.booking = safeDict["url"] as? String;
